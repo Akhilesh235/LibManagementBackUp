@@ -58,16 +58,17 @@ namespace LibraryManagementSystem
             }
 
             Console.WriteLine("Welcome to Library");
-            bool loop = false;
-            while (loop == false)
+            bool loop = true;
+            while (loop == true)
             {
                 Start:
                 Console.WriteLine("Choose the following option : ");
                 Console.WriteLine("1. Librarian");
                 Console.WriteLine("2. User ");
-                Console.WriteLine("3. Exit Program");
+                Console.WriteLine("3. Exit Program\n");
 
                 int choose = int.Parse(Console.ReadLine());
+                Console.WriteLine(" ");
                 switch (choose)
                 {
                     case 1:
@@ -86,7 +87,7 @@ namespace LibraryManagementSystem
 
                     case 3:
                         {
-                            loop = true;
+                            loop = false;
                             break;
                         }
 

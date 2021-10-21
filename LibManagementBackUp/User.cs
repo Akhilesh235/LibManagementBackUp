@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,17 +10,25 @@ namespace LibraryManagementSystem
 
     class User
     {
-        public int ID { get; private set; }
-        public string Name { get; private set; }
-        public double Fine { get; private set; }
         public void UserStart()
         {
             Console.WriteLine("Enter your Name");
             string name = Console.ReadLine();
             Console.WriteLine("Enter your User ID");
-            int UserID = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter your Password");
-            string UserPassword = Console.ReadLine();
+            string UserID = Console.ReadLine();
+
+            FileStream fs = new FileStream("Users.txt", FileMode.Open, FileAccess.Read);
+            StreamReader sr = new StreamReader(fs);
+            sr.BaseStream.Seek(0, SeekOrigin.Begin);
+            string str = sr.ReadToEnd();
+
+            if (str != name)
+            {
+                Console.WriteLine("invalud userID.Try again");            
+            }
+            sr.Close();
+            fs.Close();
+         
 
             Console.WriteLine("Welcome {0}", name);
             Console.WriteLine("What would you like to do?");

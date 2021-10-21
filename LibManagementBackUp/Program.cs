@@ -10,6 +10,8 @@ namespace LibraryManagementSystem
     {
         static void Main(string[] args)
         {
+            List<Book> Books = new List<Book>();
+            List<User> UsersInLibrary = new List<User>();
             StartProgram sp = new StartProgram();
             sp.StartOption();
         }            

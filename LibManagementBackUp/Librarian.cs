@@ -20,6 +20,7 @@ namespace LibraryManagementSystem
                 goto Top;
             }
 
+            Console.WriteLine(" ");
             Console.WriteLine("Welcome Librarian!");
             Console.WriteLine(" ");
             bool loop = true;
@@ -28,8 +29,10 @@ namespace LibraryManagementSystem
                 Console.WriteLine("Please choose the following options");
                 Console.WriteLine("1. Add New Books");
                 Console.WriteLine("2. Add New Users");
-                Console.WriteLine("3. Search for Book : ");
-                Console.WriteLine("3. Go Back to Previous Menu ");
+                Console.WriteLine("3. Retrieve All Books");
+                Console.WriteLine("4. Retrieve All Users");
+                Console.WriteLine("5. Go Back to Previous Menu ");
+                Console.WriteLine(" ");
 
                 int choose = int.Parse(Console.ReadLine());
                 switch (choose)
@@ -39,7 +42,7 @@ namespace LibraryManagementSystem
                         AddBookDetails:
                             FileStream fs = new FileStream("Books.txt", FileMode.Append, FileAccess.Write);
                             StreamWriter streamWriter = new StreamWriter(fs);
-                            Console.WriteLine("Enter Book Details");
+                            Console.WriteLine("\nEnter Book Details");
                             Console.WriteLine("");
                             Console.WriteLine("Title of Book :");
                             string name = Console.ReadLine();
@@ -59,8 +62,9 @@ namespace LibraryManagementSystem
                             streamWriter.Close();
                             fs.Close();
 
-                            Console.WriteLine("Would you like to add another Book? Yes/No");
+                            Console.WriteLine("\nWould you like to add another Book? Yes/No");
                             string option = Console.ReadLine();
+                            Console.WriteLine(" ");
                             option.ToLower();
 
                             switch (option)
@@ -97,8 +101,9 @@ namespace LibraryManagementSystem
                             streamWriter.Close();
                             fs.Close();
 
-                            Console.WriteLine("Would you like to add another User? Yes/No");
+                            Console.WriteLine("\nWould you like to add another User? Yes/No");
                             string option = Console.ReadLine();
+                            Console.WriteLine(" ");
                             option.ToLower();
 
                             switch (option)
@@ -117,9 +122,34 @@ namespace LibraryManagementSystem
                         }
                     case 3:
                         {
+                            FileStream fs = new FileStream("Books.txt", FileMode.Open, FileAccess.Read);
+                            StreamReader sr = new StreamReader(fs);
+                            Console.WriteLine("Books In Library \n");
+                            sr.BaseStream.Seek(0, SeekOrigin.Begin);
+                            string str = sr.ReadToEnd();                            
+                            Console.WriteLine(str);                               
+                            sr.Close();
+                            fs.Close();
+                            Console.WriteLine("\nClick any key to continue\n");
+                            Console.ReadLine();
                             break;
                         }
+
                     case 4:
+                        {
+                            FileStream fs = new FileStream("Users.txt", FileMode.Open, FileAccess.Read);
+                            StreamReader sr = new StreamReader(fs);
+                            Console.WriteLine("Users In Library \n");
+                            sr.BaseStream.Seek(0, SeekOrigin.Begin);
+                            string str = sr.ReadToEnd();
+                            Console.WriteLine(str);
+                            sr.Close();
+                            fs.Close();
+                            Console.WriteLine("\nClick any key to continue\n");
+                            Console.ReadLine();
+                            break;
+                        }
+                    case 5:
                         {
                             loop = false;                            
                             break;
